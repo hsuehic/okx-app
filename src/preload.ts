@@ -2,8 +2,7 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
-// import * as path from 'path';
-
+import { config } from 'dotenv';
 import { contextBridge, shell } from 'electron';
 import {
   Account,
@@ -14,8 +13,6 @@ import {
   Order,
   // WsOrder,
   WsPrivateChannelArgWithInstFamily,
-  okxRestClient,
-  okxWsClient,
 } from 'okx-node';
 // import {
 //   Order as OrmOrder,
@@ -24,6 +21,25 @@ import {
 // } from 'okx-persist';
 
 // import { HighFrequencyConfigs } from './renderer/component/trade/high-frequency';
+
+config();
+const { API_KEY, PASSPHRASE, SECRET_KEY, MARKET } = process.env;
+
+export const okxWsClient = OkxWebSocketClient.getInstance({
+  apiKey: API_KEY,
+  passphrase: PASSPHRASE,
+  secretKey: SECRET_KEY,
+  market: MARKET,
+});
+
+export const okxRestClient = new OkxRestClient(
+  {
+    apiKey: API_KEY,
+    apiPass: PASSPHRASE,
+    apiSecret: SECRET_KEY,
+  },
+  MARKET
+);
 
 const getExposableObject = <T extends object>(origin: T): ExposableType<T> => {
   const exposableObject = {} as ExposableType<T>;
