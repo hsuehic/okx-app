@@ -16,7 +16,7 @@ export const Balance = () => {
 
   let initialAccountInfo: WsAccoutInfo | undefined = undefined;
   let initialAssetInfo: WsAssetInfo[] | undefined = undefined;
-  const info = account.accountInfo();
+  const info = account.accountInfo;
   if (info && info.length > 0) {
     initialAccountInfo = info[0];
     initialAssetInfo = initialAccountInfo.details;
