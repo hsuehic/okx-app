@@ -43,12 +43,12 @@ export const usePush = <TArg extends WsPushArg, TData extends object>(
       setV(push.data[0]);
     }
   };
-  const { on, off } = window.wsClient;
+  const { wsClient } = window;
   const pushEvent = `push-${channel}` as const;
   useEffect(() => {
-    on(pushEvent, pushHandler);
+    wsClient.on(pushEvent, pushHandler);
     return () => {
-      off(pushEvent, pushHandler);
+      wsClient.off(pushEvent, pushHandler);
     };
   }, [...deps]);
   return [v];
