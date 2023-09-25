@@ -1,10 +1,11 @@
 # OKX App
 
-A automatical crypto currency trading application, by electron + typescript
+A automatical crypto currency trading application, by electron + typescript. Based on [okx-node](https://github.com/hsuehic/okx-node)
 
 ## Screenshot
 
-![screenshot](./asset/screenshot.png)
+![screenshot](./asset/screenshot.gif)
+![screencapture](./asset/screenshot.png)
 
 ## Troubleshooting
 
